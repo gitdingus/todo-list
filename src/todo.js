@@ -4,8 +4,8 @@ function createTodo(title, description, dueDate, priority){
 
     todo.title = title || "(Untitled Note)";
     todo.description = description || "(No Description)";
-    todo.dueDate = dueDate || "(No Due Date)";
-    todo.priority = priority || "";
+    todo.dueDate = setDueDate(dueDate);
+    todo.priority = setPriority(priority);
     todo.checklist = [];
     todo.notes = [];
 
@@ -35,11 +35,16 @@ function createTodo(title, description, dueDate, priority){
     }
 
     function setDueDate(newDueDate){
-        todo.dueDate = newDueDate;
+        if (newDueDate instanceof Date === true){
+            todo.dueDate = newDueDate;
+        }
+        else {
+            todo.dueDate = "(No Due Date)";
+        }
     }
 
     function setPriority(newPriority){
-        if isValidPriority(newPriority)){
+        if (isValidPriority(newPriority) || newPriority === ""){
             todo.priority = newPriority;
         }
         else {
@@ -107,11 +112,11 @@ function createTodo(title, description, dueDate, priority){
             return todo.checklist.sort(compareByItemName);
         }
         else if (sortBy === "checked"){
-            return todo.checklist.sort(comparebyCheckedAndItemName);
+            return todo.checklist.sort(compareByCheckedAndItemName);
         }
 
         // default sort order
-        return todo.checklist.sort(checklistComparatoryByItemName);
+        return todo.checklist.sort(compareByByItemName);
     }
 
     function compareByItemName(a, b){
