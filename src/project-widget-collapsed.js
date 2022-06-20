@@ -17,16 +17,26 @@ function createCollapsedProjectWidget(project){
             createHtmlElement({
                 tag: "button",
                 classes: [ "view-project-button" ],
-                attributes: {
-                    src: chevronDown,
-                },
+                children: [
+                    createHtmlElement({
+                        tag: "img",
+                        attributes: {
+                            src: chevronDown,
+                        },
+                    }),
+                ],
             }),
             createHtmlElement({
                 tag: "button",
                 classes: [ "delete-project-button" ],
-                attributes: {
-                    src: trash,
-                },
+                children: [
+                    createHtmlElement({
+                        tag: "img",
+                        attributes: {
+                            src: trash,
+                        },
+                    }),
+                ],
             }),
         ],
     });
