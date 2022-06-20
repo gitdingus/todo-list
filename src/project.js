@@ -51,7 +51,7 @@ function createProject (name){
     }
 
     function hasPastDue(){
-        return project.todos.some( todo => todo.isPastDue() );)
+        return project.todos.some( todo => todo.isPastDue() );
     }
 
     function toString(){
