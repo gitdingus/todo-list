@@ -90,7 +90,7 @@ function createTodo(title, description, dueDate, priority){
         if (typeof(item) === "number"){
             return checklist[item];
         }
-        else (typeof(item) === "string"){
+        else if (typeof(item) === "string"){
             let i = todo.checklist.find( val => val.itemName = item);
             return i;
         }
@@ -108,17 +108,17 @@ function createTodo(title, description, dueDate, priority){
                 todo.checklist[item].checked = todo.checklist[item].checked ? false : true;
             }
         }
-        else (typeof(item) === "string"){
+        else if (typeof(item) === "string"){
             let i = todo.checklist.find( val => val.itemName = item);
             i.checked = i.checked ? false : true;
         }
     }
-    
+
     function removeChecklistItem(item){
         if (typeof(item) === "number"){
             return todo.checklist.splice(item, 1);
         }
-        else (typeof(item) === "string"){
+        else if (typeof(item) === "string"){
             let i = todo.checklist.findIndex( val => val.itemName = item);
             
             return todo.checklist.splice(i, 1);
@@ -228,7 +228,6 @@ function createTodo(title, description, dueDate, priority){
         getPriority,
         getChecklist,
         getChecklistItem,
-        getChecklistLength,
         getIndexOfChecklistItem,
         getNotes,
         getNote,
