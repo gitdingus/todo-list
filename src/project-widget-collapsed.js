@@ -31,7 +31,10 @@ function createCollapsedProjectWidget(project){
         ],
     });
 
-    const deleteButton = collapsedProjectElement.querySelector('.delete-project-button');
+    const _deleteButtonEvents = [];
+    const _deleteButton = collapsedProjectElement.querySelector('.delete-project-button');
+
+    _deleteButton.addEventListener("click", _deleteClicked);
 
     if (_project.hasPastDue()){
         collapsedProjectElement.insertBefore(createHtmlElement({
@@ -39,9 +42,27 @@ function createCollapsedProjectWidget(project){
             attributes: {
                 src: exclamation,
             },
-        }), deleteButton);
+        }), _deleteButton);
     }
-    return { collapsedProjectElement }
+
+    function _deleteClicked(){
+        _deleteButtonEvents.forEach( fn => fn(collapsedProjectWidget));
+    }
+
+    function addDeleteEvent(fn){
+        _deleteButtonEvents.push(fn);
+    }
+
+    function getProjectName(){
+        return _project.getName();
+    }
+
+    function getProjectTodos(){
+        return _project.getTodos();
+    }
+
+    let collapsedProjectWidget = { collapsedProjectElement, getProjectName, getProjectTodos, addDeleteEvent };
+    return collapsedProjectWidget;
 }
 
 export { createCollapsedProjectWidget }
