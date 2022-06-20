@@ -91,13 +91,13 @@ function createTodo(title, description, dueDate, priority){
             return checklist[item];
         }
         else if (typeof(item) === "string"){
-            let i = todo.checklist.find( val => val.itemName = item);
+            let i = todo.checklist.find( val => val.itemName === item);
             return i;
         }
     }
 
     function getIndexOfChecklistItem(itemName){
-        const index = todo.checklist.findIndex( item => item.itemName = itemName );
+        const index = todo.checklist.findIndex( item => item.itemName === itemName );
 
         return index;
     }
@@ -109,7 +109,7 @@ function createTodo(title, description, dueDate, priority){
             }
         }
         else if (typeof(item) === "string"){
-            let i = todo.checklist.find( val => val.itemName = item);
+            let i = todo.checklist.find( val => val.itemName === item);
             i.checked = i.checked ? false : true;
         }
     }
@@ -119,7 +119,7 @@ function createTodo(title, description, dueDate, priority){
             return todo.checklist.splice(item, 1);
         }
         else if (typeof(item) === "string"){
-            let i = todo.checklist.findIndex( val => val.itemName = item);
+            let i = todo.checklist.findIndex( val => val.itemName === item);
             
             return todo.checklist.splice(i, 1);
         }
@@ -152,7 +152,7 @@ function createTodo(title, description, dueDate, priority){
 
     function compareByCheckedAndItemName(a,b){
         if (a.checked === b.checked){
-            return compareByCheckedAndItemName(a,b);
+            return compareByItemName(a,b);
         }
         else if (a.checked === true && b.checked === false){
             return -1;
