@@ -37,7 +37,7 @@ function createAddProjectWidget(){
                 tag: "button",
                 properties: {
                     id: "cancel-add-project-button",
-                }
+                },
                 children: [
                     createHtmlElement({
                         tag: "img",
