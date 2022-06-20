@@ -70,6 +70,7 @@ function createProject (name){
         getTodo,
         removeTodo,
         setName,
+        hasPastDue,
         toString
     }
 
