@@ -29,7 +29,7 @@ function createCollapsedProjectWidget(project){
                 },
             }),
         ],
-    }),
+    });
 
 
     return { collapsedProjectElement }
