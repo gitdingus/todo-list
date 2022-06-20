@@ -1,8 +1,10 @@
 import { createHtmlElement } from "dom-utils";
-import chevronDown from './icons/chevron-down.svg'
-import trash from './icons/trash-can-outline.svg'
+import './project-widget-collapsed.css';
+import exclamation from './icons/exclamation-thick.svg';
+import trash from './icons/trash-can-outline.svg';
 
 function createCollapsedProjectWidget(project){
+    const _project = project;
     const collapsedProjectElement = createHtmlElement({
         tag: "div",
         classes: [ "collapsed-project-widget" ],
@@ -11,20 +13,8 @@ function createCollapsedProjectWidget(project){
                 tag: "p",
                 classes: [ "project-name" ],
                 properties: {
-                    textContent: project.getName(),
+                    textContent: _project.getName(),
                 },
-            }),
-            createHtmlElement({
-                tag: "button",
-                classes: [ "view-project-button" ],
-                children: [
-                    createHtmlElement({
-                        tag: "img",
-                        attributes: {
-                            src: chevronDown,
-                        },
-                    }),
-                ],
             }),
             createHtmlElement({
                 tag: "button",
@@ -41,7 +31,16 @@ function createCollapsedProjectWidget(project){
         ],
     });
 
+    const deleteButton = collapsedProjectElement.querySelector('.delete-project-button');
 
+    if (_project.hasPastDue()){
+        collapsedProjectElement.insertBefore(createHtmlElement({
+            tag: "img",
+            attributes: {
+                src: exclamation,
+            },
+        }), deleteButton);
+    }
     return { collapsedProjectElement }
 }
 
