@@ -4,8 +4,8 @@ function createTodo(title, description, dueDate, priority){
 
     todo.title = title || "(Untitled Note)";
     todo.description = description || "(No Description)";
-    todo.dueDate = setDueDate(dueDate);
-    todo.priority = setPriority(priority);
+    setDueDate(dueDate);
+    setPriority(priority);
     todo.checklist = [];
     todo.notes = [];
 
@@ -31,7 +31,7 @@ function createTodo(title, description, dueDate, priority){
     }
 
     function setDescription(newDescription){
-        todo.description = newDescription);
+        todo.description = newDescription;
     }
 
     function setDueDate(newDueDate){
@@ -66,7 +66,7 @@ function createTodo(title, description, dueDate, priority){
     // and boolean is a value determining whether its checked off.
     // returns true or false whether or not item was added
     function addToChecklist(itemName, checked){
-        let duplicate = todo.checklist.some( val => val === item );
+        let duplicate = todo.checklist.some( val => val.itemName === itemName );
         
         if (!duplicate){
             let newItem = {
@@ -86,12 +86,14 @@ function createTodo(title, description, dueDate, priority){
         return todo.checklist;
     }
 
-    function getChecklistItem(index){
-        return todo.checklist[index];
-    }
-
-    function getChecklistLength(){
-        return todo.checklist.length;
+    function getChecklistItem(item){
+        if (typeof(item) === "number"){
+            return checklist[item];
+        }
+        else (typeof(item) === "string"){
+            let i = todo.checklist.find( val => val.itemName = item);
+            return i;
+        }
     }
 
     function getIndexOfChecklistItem(itemName){
@@ -100,10 +102,27 @@ function createTodo(title, description, dueDate, priority){
         return index;
     }
 
-    function removeChecklistItem(itemName){
-        const index = getIndexOfChecklistItem(itemName);
-
-        return todo.checklist.splice(index, 1);
+    function toggleChecklistItem(item){
+        if (typeof(item) === "number"){
+            if (item < todo.checklist.length && item >= 0){
+                todo.checklist[item].checked = todo.checklist[item].checked ? false : true;
+            }
+        }
+        else (typeof(item) === "string"){
+            let i = todo.checklist.find( val => val.itemName = item);
+            i.checked = i.checked ? false : true;
+        }
+    }
+    
+    function removeChecklistItem(item){
+        if (typeof(item) === "number"){
+            return todo.checklist.splice(item, 1);
+        }
+        else (typeof(item) === "string"){
+            let i = todo.checklist.findIndex( val => val.itemName = item);
+            
+            return todo.checklist.splice(i, 1);
+        }
     }
 
     function sortChecklist(sortBy){
@@ -163,9 +182,13 @@ function createTodo(title, description, dueDate, priority){
     }
 
     function removeNote(note){
-        let index = getIndexOfNote(note);
-
-        return todo.notes.splice(index, 1);
+        if (typeof(note) === "number"){
+            todo.notes.splice(note, 1);
+        }
+        else if (typeof(note) === "string"){
+            let index = todo.notes.findIndex( val => val.itemName === note);
+            todo.notes.splice(index, 1);
+        }
     }
 
     // If a todo.dueDate has a valid Date object it will check to see 
@@ -186,14 +209,16 @@ function createTodo(title, description, dueDate, priority){
     }
 
     function toString(){
-        let todoString = `Title: ${todo.title}\n`;
-        todoString += `Description: ${todo.description}\n`;
-        todoString += `Due Date: ${todo.dueDate.toString()}`;
-        todoString += `Priority: ${todo.priority}`;
-        todoString += `Notes: \n`;
+        let todoString = `Title: ${todo.title}\n`
+        + `Description: ${todo.description}\n`
+        + `Due Date: ${todo.dueDate}\n`
+        + `Priority: ${todo.priority}\n`
+        + `Notes: \n`
         todo.notes.forEach( note => todoString += `  ${note}\n` );
         todoString += `Checklist: \n`;
-        todo.checklist.forEach( item => todoString += ` ${item.itemName} ${(item.checked) ? 'complete' : 'incomplete'}`);
+        todo.checklist.forEach( item => todoString += ` ${item.itemName} ${(item.checked) ? 'complete' : 'incomplete'}\n`);
+    
+        return todoString;
     }
 
     return { 
@@ -204,7 +229,7 @@ function createTodo(title, description, dueDate, priority){
         getChecklist,
         getChecklistItem,
         getChecklistLength,
-        getIndexofChecklistItem,
+        getIndexOfChecklistItem,
         getNotes,
         getNote,
         getIndexOfNote,
@@ -216,9 +241,11 @@ function createTodo(title, description, dueDate, priority){
         addNote,
         removeChecklistItem,
         removeNote,
+        toggleChecklistItem,
         sortChecklist,
         isPastDue,
+        toString
     }
 }
 
-export { createTodo };
+// export { createTodo };
