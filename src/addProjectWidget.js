@@ -21,7 +21,7 @@ function createAddProjectWidget(){
             }),
             createHtmlElement({
                 tag: "button",
-                properites: {
+                properties: {
                     id: "add-project-button",
                 },
                 children: [
@@ -50,6 +50,13 @@ function createAddProjectWidget(){
         ],
     });
 
+    const addProjectButton = addProjectWidget.querySelector("#add-project-button");
+    const cancelProjectButton = addProjectWidget.querySelector("#cancel-add-project-button");
+
+    function disableButtons(){
+
+
+    }
     return addProjectWidget;
 }
 
