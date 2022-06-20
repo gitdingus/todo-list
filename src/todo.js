@@ -185,6 +185,17 @@ function createTodo(title, description, dueDate, priority){
         return false;
     }
 
+    function toString(){
+        let todoString = `Title: ${todo.title}\n`;
+        todoString += `Description: ${todo.description}\n`;
+        todoString += `Due Date: ${todo.dueDate.toString()}`;
+        todoString += `Priority: ${todo.priority}`;
+        todoString += `Notes: \n`;
+        todo.notes.forEach( note => todoString += `  ${note}\n` );
+        todoString += `Checklist: \n`;
+        todo.checklist.forEach( item => todoString += ` ${item.itemName} ${(item.checked) ? 'complete' : 'incomplete'}`);
+    }
+
     return { 
         getTitle,
         getDescription,
@@ -209,3 +220,5 @@ function createTodo(title, description, dueDate, priority){
         isPastDue,
     }
 }
+
+export { createTodo };
