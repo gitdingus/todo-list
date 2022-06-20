@@ -6,10 +6,12 @@ function createProject (name){
 
     function addTodo(todo){
         project.todos.push(todo);
+        return todo;
     }
 
     function addTodos(todos){
         todos.forEach( todo => project.todos.push(todo) );
+        return todos;
     }
 
     function getName(){
