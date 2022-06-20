@@ -1,0 +1,17 @@
+#add-project-widget{
+    display: flex;    
+}
+
+#add-project-text{
+    flex: 1;
+}
+
+#add-project-widget button{
+    border: 0;
+    background-color: rgba(0,0,0,0);
+}
+
+#add-project-widget .disabled,
+#add-project-widget .inactive{
+    opacity: .5;
+}
