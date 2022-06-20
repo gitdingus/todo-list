@@ -50,6 +50,10 @@ function createProject (name){
         project.name = newName;
     }
 
+    function hasPastDue(){
+        return project.todos.some( todo => todo.isPastDue() );)
+    }
+
     function toString(){
         let projectString = `Project Name: ${project.name}\n`
             + `Todos: \n`;
