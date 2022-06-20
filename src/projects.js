@@ -44,6 +44,16 @@ function createTodoList(){
     function removeTodoFromProject(project, todo){
         return getProject(project).removeTodo(todo);
     }
+
+    return {
+        addProject,
+        getProject,
+        removeProject,
+        addTodoToProject,
+        getTodoFromProject,
+        getTodosFromProject,
+        removeTodoFromProject
+    }
 }
 
 export { createTodoList }
