@@ -1,4 +1,4 @@
-import { createAddProjectWidget } from 'addProjectWidget.js';
+import { createAddProjectWidget } from './addProjectWidget.js';
 
 const body = document.querySelector("body");
 
