@@ -183,11 +183,11 @@ function createTodo(title, description, dueDate, priority){
 
     function removeNote(note){
         if (typeof(note) === "number"){
-            todo.notes.splice(note, 1);
+            return todo.notes.splice(note, 1);
         }
         else if (typeof(note) === "string"){
             let index = todo.notes.findIndex( val => val.itemName === note);
-            todo.notes.splice(index, 1);
+            return todo.notes.splice(index, 1);
         }
     }
 
@@ -247,4 +247,4 @@ function createTodo(title, description, dueDate, priority){
     }
 }
 
-// export { createTodo };
+export { createTodo };
