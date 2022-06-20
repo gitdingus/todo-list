@@ -1,0 +1,12 @@
+.collapsed-project-widget{
+    display: flex;
+}
+
+.collapsed-project-widget p{
+    flex: 1;
+}
+
+.collapsed-project-widget button{
+    border: 0;
+    background-color: rgba(0,0,0,0);
+}
