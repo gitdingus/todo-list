@@ -31,8 +31,13 @@ function ProjectsList(){
             return projects.splice(project, 1);
         }
         else if (typeof(project) === 'string'){
-            let index =  todoList.findIndex( val => val.getName(project) === project);
+            let index =  projects.findIndex( val => val.getName(project) === project);
             return projects.splice(index, 1);
+        }
+        else {
+            if (project.getName()){
+                removeProject(project.getName());
+            }
         }
     }
 
