@@ -1,9 +1,12 @@
 import { createHtmlElement } from 'dom-utils';
+import { EventEmitter } from 'event-emitter';
+import { createProject } from './project'
 import './addProjectWidget.css';
 import plusIcon from './icons/plus-thick.svg';
 import minusIcon from './icons/minus-thick.svg';
 
 function createAddProjectWidget(){
+    const events = EventEmitter;
     let addProjectWidget = createHtmlElement({
         tag: "div",
         properties: {
@@ -51,7 +54,6 @@ function createAddProjectWidget(){
         ],
     });
 
-    const _addProjectEvents = [];
     const _addProjectText = addProjectWidget.querySelector("#add-project-text");
     const _addProjectButton = addProjectWidget.querySelector("#add-project-button");
     const _cancelProjectButton = addProjectWidget.querySelector("#cancel-add-project-button");
@@ -101,20 +103,15 @@ function createAddProjectWidget(){
     }
 
     function _addProject(){
-        _addProjectEvents.forEach( fn => fn() );
-
-        _addProjectText.value = "";
-        _disableButtons();
-    }
-
-    function addSubmitAction(fn){
-        _addProjectEvents.push(fn);
+        let newProject = createProject(getValue());
+        events.raiseEvent("addProject", newProject);
+        _cancelInput();
     }
 
     function getValue(){
         return _addProjectText.value;
     }
-    return { addProjectWidget, addSubmitAction, getValue };
+    return { addProjectWidget, getValue };
 }
 
 export { createAddProjectWidget }
