@@ -1,31 +1,38 @@
 import { createProject } from './project';
 
-function createTodoList(){
-    let todoList = [];
+function ProjectsList(){
+    let projects = [];
     
-    function addProject(projectName){
-        let newProject = createProject(projectName);
-        todoList.push(newProject);
+    function addProject(project){
+        if (typeof(project) === 'string'){
+            project = createProject(project);
+        }
 
-        return newProject;
+        projects.push(project);
+
+        return project;
     }
 
     function getProject(project){
         if (typeof(project) === 'number'){
-            return todoList[project];
+            return projects[project];
         }
         else if (typeof(project) === 'string'){
-            return todoList.find( val => val.getName(project) === project);
+            return projects.find( val => val.getName(project) === project);
         }
+    }
+    
+    function getProjects(){
+        return projects;
     }
 
     function removeProject(project){
         if (typeof(project) === 'number'){
-            return todoList.splice(project, 1);
+            return projects.splice(project, 1);
         }
         else if (typeof(project) === 'string'){
             let index =  todoList.findIndex( val => val.getName(project) === project);
-            return todoList.splice(index, 1);
+            return projects.splice(index, 1);
         }
     }
 
@@ -48,6 +55,7 @@ function createTodoList(){
     return {
         addProject,
         getProject,
+        getProjects,
         removeProject,
         addTodoToProject,
         getTodoFromProject,
@@ -56,4 +64,4 @@ function createTodoList(){
     }
 }
 
-export { createTodoList }
+export { ProjectsList }
