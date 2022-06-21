@@ -1,9 +1,11 @@
 import { createHtmlElement } from "dom-utils";
+import {EventEmitter} from 'event-emitter'
 import './project-widget-collapsed.css';
 import exclamation from './icons/exclamation-thick.svg';
 import trash from './icons/trash-can-outline.svg';
 
 function createCollapsedProjectWidget(project){
+    const events = EventEmitter;
     const _project = project;
     const collapsedProjectElement = createHtmlElement({
         tag: "div",
@@ -31,7 +33,6 @@ function createCollapsedProjectWidget(project){
         ],
     });
 
-    const _deleteButtonEvents = [];
     const _deleteButton = collapsedProjectElement.querySelector('.delete-project-button');
 
     _deleteButton.addEventListener("click", _deleteClicked);
@@ -46,11 +47,7 @@ function createCollapsedProjectWidget(project){
     }
 
     function _deleteClicked(){
-        _deleteButtonEvents.forEach( fn => fn(collapsedProjectWidget));
-    }
-
-    function addDeleteEvent(fn){
-        _deleteButtonEvents.push(fn);
+        events.raiseEvent("deleteProject", _project);
     }
 
     function getProjectName(){
@@ -61,7 +58,7 @@ function createCollapsedProjectWidget(project){
         return _project.getTodos();
     }
 
-    let collapsedProjectWidget = { collapsedProjectElement, getProjectName, getProjectTodos, addDeleteEvent };
+    let collapsedProjectWidget = { collapsedProjectElement, getProjectName, getProjectTodos };
     return collapsedProjectWidget;
 }
 
