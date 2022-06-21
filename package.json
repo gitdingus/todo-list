@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/gitdingus/todo-list#readme",
   "dependencies": {
-    "dom-utils": "github:gitdingus/dom-utils"
+    "dom-utils": "github:gitdingus/dom-utils",
+    "event-emitter": "github:gitdingus/event-emitter"
   },
   "devDependencies": {
     "css-loader": "^6.7.1",
