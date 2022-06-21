@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/gitdingus/todo-list#readme",
   "dependencies": {
+    "date-picker": "github:gitdingus/date-picker",
     "dom-utils": "github:gitdingus/dom-utils",
     "event-emitter": "github:gitdingus/event-emitter"
   },
