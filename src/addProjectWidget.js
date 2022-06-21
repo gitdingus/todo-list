@@ -62,6 +62,7 @@ function createAddProjectWidget(){
 
     _addProjectText.addEventListener("focus", _enableButtons);
     _addProjectText.addEventListener("blur", _disableButtons);
+    _addProjectText.addEventListener("keydown", keyPressed);
 
     _addProjectButton.addEventListener("click", _addProject)
     _cancelProjectButton.addEventListener("click", _cancelInput);
@@ -89,12 +90,10 @@ function createAddProjectWidget(){
         _addProjectText.classList.remove("inactive");
     }
 
-    function _inputBlur(){
-        _disableButtons();
-    }
-
-    function _inputFocus(){
-        _enableButtons();
+    function keyPressed(e){
+        if (e.key === 'Enter' && _addProjectText.value !== ""){
+            _addProject();
+        }
     }
 
     function _cancelInput(){
@@ -105,7 +104,8 @@ function createAddProjectWidget(){
     function _addProject(){
         let newProject = createProject(getValue());
         events.raiseEvent("addProject", newProject);
-        _cancelInput();
+        _addProjectText.value = "";
+        // _cancelInput();
     }
 
     function getValue(){
