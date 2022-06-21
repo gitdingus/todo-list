@@ -17,6 +17,10 @@ module.exports = {
                 test: /\.css$/i,
                 use: [ "style-loader", "css-loader" ],
             },
+            {
+                test: /new\-todo\-form\.html$/i,
+                type: "asset/source",
+            }
         ],
     },
 }
