@@ -1,21 +1,41 @@
 import { createHtmlElement } from 'dom-utils';
 import { createCollapsedProjectWidget } from './project-widget-collapsed';
 
-const createProjectList(projects){
+const createProjectList = function (projects){
+
     const projectListElement = createHtmlElement({
         tag: "div",
         classes: [ "project-list" ],
 
     });
 
-    projects.forEach( project => addProjectToList(project));
+    populateProjectsList(projects);
 
+    function populateProjectsList(projects){
+        projects = projects || [];
+
+        projects.forEach( project =>{
+                addProjectToList(project);
+            }
+        );
+    }
     function addProjectToList(project){
-        let newProject = createCollapsedProjectWidget(project);
+        let newProject = createCollapsedProjectWidget(project).collapsedProjectElement;
         projectListElement.appendChild(newProject);
     }
 
-    return projectListElement;
+    function updateProjectsList(projects) {
+        _clearProjectPanel();
+        populateProjectsList(projects);
+    }
+
+    function _clearProjectPanel(){
+        while (projectListElement.firstChild){
+            projectListElement.removeChild(projectListElement.firstChild);
+        }
+    }
+
+    return { projectListElement, updateProjectsList } ;
 
 }
 
