@@ -38,13 +38,18 @@ function createNewTodoForm() {
     function buildTodo(){
         const title = newTodoDiv.querySelector("#title-field").value;
         const description = newTodoDiv.querySelector("#description-field").value;
-        const date = new Date(datePicker.getISO8601DateString()+"T00:00:00"); // Buggy without time appended to end
         const notesArr = buildNotesArray();
         const checklistArr = buildChecklistArray();
- 
+        let date = "";
         let priority = newTodoDiv.querySelector("input[name='priority']:checked");
+
+        if (datePicker.getISO8601DateString()){
+            date = new Date(datePicker.getISO8601DateString()+"T00:00:00"); // buggy without rest of time
+        }
+
         priority = (priority) ? priority.value : "";
 
+        
         const newTodo = createTodo(title, description, date, priority);
 
         notesArr.forEach( note => newTodo.addNote(note) );
