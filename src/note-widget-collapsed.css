@@ -1,0 +1,44 @@
+.collapsed-note-widget{
+    display: grid;
+    grid-template-columns: 1fr auto 20px 20px;
+    grid-template-areas: "title due-date past-due delete";
+
+    gap: 12px;
+    align-items: center;
+}
+
+.collapsed-note-widget .note-title{
+    grid-area: title;
+}
+
+.collapsed-note-widget .due-date{
+    grid-area: due-date;
+}
+
+.collapsed-note-widget .high{
+    background-color: rgba(255, 0, 0, .5);
+}
+
+.collapsed-note-widget .medium{
+    background-color: rgba(255, 255, 0, .5);
+}
+
+.collapsed-note-widget .low{
+    background-color: rgba(0, 255, 0, .5);
+}
+.collapsed-note-widget .past-due{
+    grid-area: past-due;
+    border-radius: 50%;
+    padding: 5px;
+    height: 15px;
+    width: 15px;
+}
+
+.collapsed-note-widget .delete-button{
+    grid-area: delete;
+}
+
+.collapsed-note-widget img{
+    height: 15px;
+    width: 15px;
+}
