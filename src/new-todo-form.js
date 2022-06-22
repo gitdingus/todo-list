@@ -1,11 +1,13 @@
 import { createHtmlElement } from 'dom-utils';
 import { EventEmitter } from 'event-emitter';
 import  { DatePicker } from 'date-picker';
+import { createTodo } from "./todo.js";
 import formHtml from './new-todo-form.html';
 import trashImage from './icons/close-thick.svg'
 import './new-todo-form.css';
 
 function createNewTodoForm() {
+    const events = EventEmitter;
     const newTodoDiv = document.createElement("div");
     newTodoDiv.innerHTML = formHtml;
 
@@ -16,9 +18,7 @@ function createNewTodoForm() {
     const checklistField = newTodoDiv.querySelector("#checklist-field");
     const notesList = newTodoDiv.querySelector("#notes-list");
     const checklist = newTodoDiv.querySelector("#checklist");
-
-
-
+    const saveButton = newTodoDiv.querySelector("#save-button");
 
     newTodoDiv.querySelector("#date-pane").appendChild(datePicker.datePickerElement);    // const newTodoDiv = createHtmlElement({
     
@@ -27,6 +27,56 @@ function createNewTodoForm() {
 
     notesField.addEventListener("keydown", keyPress);
     checklistField.addEventListener("keydown", keyPress);
+
+    saveButton.addEventListener("click", () => console.log(buildTodo().toString()));
+
+    function buildTodo(){
+        console.log(datePicker.getISO8601DateString());
+        console.log(datePicker.getFullDate());
+        const title = newTodoDiv.querySelector("#title-field").value;
+        const description = newTodoDiv.querySelector("#description-field").value;
+        const date = new Date(datePicker.getISO8601DateString()+"T00:00:00"); // Buggy without time appended to end
+        const notesArr = buildNotesArray();
+        const checklistArr = buildChecklistArray();
+ 
+        let priority = newTodoDiv.querySelector("input[name='priority']:checked");
+        priority = (priority) ? priority.value : "";
+
+        const newTodo = createTodo(title, description, date, priority);
+
+        notesArr.forEach( note => newTodo.addNote(note) );
+        checklistArr.forEach ( item => newTodo.addToChecklist(item.itemName, item.checked));
+
+        return newTodo;
+
+    }
+
+    function buildNotesArray(){
+        const notesList = document.querySelectorAll(".note-item");
+        const notes = [];
+
+        notesList.forEach( (note) => {
+            let text = note.querySelector("p").textContent;
+            notes.push(text);
+        });
+
+        return notes;
+    }
+
+    function buildChecklistArray(){
+        const checklistItems = document.querySelectorAll(".checklist-item");
+        const checklist = [];
+
+        checklistItems.forEach( (item) => {
+            let newItem = {};
+            newItem.checked = item.firstChild.checked;
+            newItem.itemName = item.firstChild.nextSibling.textContent;
+
+            checklist.push(newItem);
+        });
+
+        return checklist;
+    }
 
     function addNoteItem(){
         if (notesField.value !== ""){
@@ -39,12 +89,7 @@ function createNewTodoForm() {
 
     function addChecklistItem(){
         if (checklistField.value !== ""){
-            checklist.appendChild(createHtmlElement({
-                tag: "li",
-                properties: {
-                    textContent: checklistField.value,
-                },
-            }));
+            checklist.appendChild(createChecklistElement(checklistField.value));
         }
 
         checklistField.value = "";
@@ -61,6 +106,40 @@ function createNewTodoForm() {
                 addNoteItem();
             }
         }
+    }
+
+    function createChecklistElement(item){
+        const checklistElement = createHtmlElement({
+            tag: "li",
+            classes: [ "checklist-item" ],
+            children: [
+                createHtmlElement({
+                    tag: "input",
+                    attributes: {
+                        type: "checkbox",
+                    },
+                }),
+                createHtmlElement({
+                    tag: "label",
+                    properties: {
+                        textContent: item,
+                    },
+                }),
+                createHtmlElement({
+                    tag: "img",
+                    properties: {
+                        src: trashImage,
+                    },
+                }),
+            ],
+        });
+
+        checklistElement.querySelector("img").addEventListener("click", function(e) {
+            const li = e.target.parentNode;
+
+            li.remove();
+        });
+        return checklistElement;
     }
 
     function createNoteElement(note){
@@ -86,26 +165,12 @@ function createNewTodoForm() {
         noteElement.querySelector("img").addEventListener("click", function (e){
             const li = e.target.parentNode;
 
-            li.remove(li);
+            li.remove();
         })
 
         return noteElement;
     }
 
-    function createChecklistItem(item){
-        const itemElement = createHtmlElement({
-            tag: "li",
-            classes: [ "checklist-item" ],
-            children: {
-                createHtmlElement({
-                    tag: "input",
-                    properties: {
-                        
-                    }
-                })
-            }
-        });
-    }
 
     return newTodoDiv;
 
