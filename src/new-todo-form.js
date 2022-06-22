@@ -28,11 +28,14 @@ function createNewTodoForm() {
     notesField.addEventListener("keydown", keyPress);
     checklistField.addEventListener("keydown", keyPress);
 
-    saveButton.addEventListener("click", () => console.log(buildTodo().toString()));
+    saveButton.addEventListener("click", saveTodo);
 
+    function saveTodo(e){
+        let newTodo = buildTodo();
+
+        events.raiseEvent("saveTodo", newTodo);
+    }
     function buildTodo(){
-        console.log(datePicker.getISO8601DateString());
-        console.log(datePicker.getFullDate());
         const title = newTodoDiv.querySelector("#title-field").value;
         const description = newTodoDiv.querySelector("#description-field").value;
         const date = new Date(datePicker.getISO8601DateString()+"T00:00:00"); // Buggy without time appended to end
