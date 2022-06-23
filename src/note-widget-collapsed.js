@@ -55,8 +55,9 @@ function createCollapsedNoteWidget(note){
     titlePara.addEventListener("click", _titleClicked);
     deleteButton.addEventListener("click", _deleteClicked);
 
-    function _deleteClicked(){
+    function _deleteClicked(e){
         events.raiseEvent("deleteTodo", _note);
+        e.target.parentElement.remove();
     }
 
     function _titleClicked(){
