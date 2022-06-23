@@ -34,7 +34,9 @@ function createCollapsedProjectWidget(project){
     });
 
     const _deleteButton = collapsedProjectElement.querySelector('.delete-project-button');
+    const _projectButton = collapsedProjectElement.querySelector('.project-name');
 
+    _projectButton.addEventListener("click", _projectClicked);
     _deleteButton.addEventListener("click", _deleteClicked);
 
     if (_project.hasPastDue()){
@@ -48,6 +50,10 @@ function createCollapsedProjectWidget(project){
 
     function _deleteClicked(){
         events.raiseEvent("deleteProject", _project);
+    }
+
+    function _projectClicked(){
+        events.raiseEvent("displayProject", _project);
     }
 
     function getProjectName(){
