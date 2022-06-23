@@ -1,0 +1,22 @@
+#project-bar{
+    display: flex;
+    align-items: center;
+
+    padding: 15px;
+}
+
+#project-bar .project-name{
+    flex: 1;
+}
+
+#project-bar .add-todo-button{
+    border: 0;
+    background-color: white;
+    height: 15px;
+    width: 15px;
+}
+
+.todo-display-panel{
+    padding-left: 30px;
+    padding-right: 30px;
+}
