@@ -1,0 +1,58 @@
+#full-todo{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "title due-date" 
+                         "title priority"
+                         "description checklist-header"
+                         "notes-header checklist"
+                         "notes checklist"
+                         ". buttons";
+
+    gap: 12px;
+}
+
+#full-todo p{
+    margin: 0;
+}
+#full-todo h1,
+#full-todo h2{
+    margin: 0;
+}
+#full-todo ul{
+    margin: 0;
+}
+#full-todo .title {
+    grid-area: title;
+}
+#full-todo .description{
+    grid-area: description;
+}
+
+#full-todo .notes-header{
+    grid-area: notes-header;
+}
+#full-todo .notes{
+    grid-area: notes;
+}
+#full-todo .due-date{
+    grid-area: due-date;
+    align-self: end;
+
+}
+#full-todo .priority{
+    grid-area: priority;
+    align-self: start;
+}
+
+#full-todo .checklist-header{
+    grid-area: checklist-header;
+}
+#full-todo .checklist{
+    grid-area: checklist;
+    list-style: none;
+    padding-left: 20px;
+}
+#full-todo .buttons{
+    grid-area: buttons;
+    display: flex;
+}
