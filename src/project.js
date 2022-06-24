@@ -57,7 +57,7 @@ function createProject (name){
     function toString(){
         let projectString = `Project Name: ${project.name}\n`
             + `Todos: \n`;
-        project.todos.forEach( todo => projectString += `   ${todo.getName}`);
+        project.todos.forEach( todo => projectString += `   ${todo.getTitle()}`);
 
         return projectString;
     }
