@@ -12,24 +12,19 @@ function createNavWidget(){
     const _todo = {};
 
     let _chain = { };
-    /*
-     chain has 
-        displayText: text to display in nav bar
-        link: a copy of the element that was displayed when it was added 
-                so it may return to that element when its clicked
-        nextLink: a link to the next object in the chain
-    
-    */
-    // const todo = {type: "todo", createDiv: , todo:};
-    
-    /*
-        looking at current link in chain
-        if current link does not have next link,
-        make new link equal to current link.nextlink
 
-        else if current link does have nextlink
-            call function with next link, and link to add
-    */
+    function navigateTo(type){
+        if (_chain.type !== "type" && !isEmpty(_chain.nextLink) ){
+            navigateTo(_chain.nextLink);
+        }
+        else{
+            link.nextLink = {};
+            _clearNav();
+            _buildChain(_chain);
+            _displayDiv(link.div);
+        }
+    }
+
     function addToNavBar(type, displayText, div){
         const link = { type, displayText, div };
         _addLink(_chain, link);
@@ -198,7 +193,8 @@ function createNavWidget(){
 
     return {
         addToNavBar,
-        initializeNavBar
+        initializeNavBar,
+        navigateTo,
     }
 }
 
