@@ -52,6 +52,14 @@ function createTodo(title, description, dueDate, priority){
         }
     }
 
+    function setNotes(notesArray){
+        todo.notes = notesArray;
+    }
+
+    function setChecklist(checklistArray){
+        todo.checklist = checklistArray;
+    }
+
     function isValidPriority(priority){
         if (priority === "low" || priority === "medium" || priority === "high"){
             return true;
@@ -236,6 +244,8 @@ function createTodo(title, description, dueDate, priority){
         setDescription,
         setDueDate,
         setPriority,
+        setNotes,
+        setChecklist,
         addToChecklist,
         addNote,
         removeChecklistItem,
