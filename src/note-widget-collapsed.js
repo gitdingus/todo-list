@@ -61,7 +61,7 @@ function createCollapsedNoteWidget(note){
     }
 
     function _titleClicked(){
-        events.raiseEvent("todoClicked", _note);
+        events.raiseEvent("displayTodo", _note);
     }
     
     function _buildPastDueClasses(){
