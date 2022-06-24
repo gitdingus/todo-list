@@ -34,13 +34,17 @@ function createProject (name){
     }
 
     function removeTodo(todo){
+        if (todo === undefined || todo === -1){
+            return;
+        }
         if (typeof(todo) === 'number'){
             return project.todos.splice(todo, 1);
         }
         else if (typeof(todo) === 'string'){
             let index = project.todos.findIndex( val => val.getTitle() === todo );
-
-            return project.todos.splice(index, 1);
+            
+            if (index !== -1) { removeTodo(index) };
+            
         }
 
         return undefined;
