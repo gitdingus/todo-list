@@ -7,6 +7,7 @@ import trashImage from './icons/close-thick.svg'
 import './new-todo-form.css';
 
 function createNewTodoForm(todo) {
+    let editing = false;
     const events = EventEmitter;
     const newTodoDiv = document.createElement("div");
     newTodoDiv.innerHTML = formHtml;
@@ -21,6 +22,7 @@ function createNewTodoForm(todo) {
     const notesList = newTodoDiv.querySelector("#notes-list");
     const checklist = newTodoDiv.querySelector("#checklist");
     const saveButton = newTodoDiv.querySelector("#save-button");
+    
 
     newTodoDiv.querySelector("#date-pane").appendChild(datePicker.datePickerElement);    // const newTodoDiv = createHtmlElement({
     
@@ -33,8 +35,8 @@ function createNewTodoForm(todo) {
     saveButton.addEventListener("click", saveTodo);
 
     if (todo){
+        editing = true;
         enterData();
-        
     }
 
     function enterData(){
@@ -55,12 +57,21 @@ function createNewTodoForm(todo) {
         if (todo.getPriority()){
             newTodoDiv.querySelector("input[value=" + todo.getPriority()).checked = true;
         }
+        if (todo.getDueDate() instanceof Date){
+            console.log("break here");
+            datePicker.setDate(todo.getDueDate());
+        }
 
     }
     function saveTodo(e){
         let newTodo = buildTodo();
-
-        events.raiseEvent("saveTodo", newTodo);
+        console.log("editing: " + editing);
+        if (editing){
+            events.raiseEvent("editTodo", todo, newTodo);
+        }
+        else {
+            events.raiseEvent("saveTodo", newTodo);
+        }
     }
     function buildTodo(){
         const newTitle = title.value;
