@@ -6,12 +6,14 @@ import formHtml from './new-todo-form.html';
 import trashImage from './icons/close-thick.svg'
 import './new-todo-form.css';
 
-function createNewTodoForm() {
+function createNewTodoForm(todo) {
     const events = EventEmitter;
     const newTodoDiv = document.createElement("div");
     newTodoDiv.innerHTML = formHtml;
 
     const datePicker = DatePicker();
+    const title = newTodoDiv.querySelector("#title-field");
+    const description = newTodoDiv.querySelector("#description-field");
     const notesButton = newTodoDiv.querySelector("#notes-button");
     const checklistButton = newTodoDiv.querySelector("#check-button");
     const notesField = newTodoDiv.querySelector("#notes-field");
@@ -30,14 +32,39 @@ function createNewTodoForm() {
 
     saveButton.addEventListener("click", saveTodo);
 
+    if (todo){
+        enterData();
+        
+    }
+
+    function enterData(){
+        console.log(todo.toString());
+        title.value = todo.getTitle();
+        description.value = todo.getDescription();
+        todo.getNotes().forEach( note => {
+            notesList.appendChild(createNoteElement(note));
+        });
+        todo.getChecklist().forEach( item => {
+            let tempItem = createChecklistElement(item.itemName);
+            console.log("one checklist item executed");
+            if (item.checked){
+                tempItem.firstChild.checked = true;
+            }
+            checklist.appendChild(tempItem);
+        });
+        if (todo.getPriority()){
+            newTodoDiv.querySelector("input[value=" + todo.getPriority()).checked = true;
+        }
+
+    }
     function saveTodo(e){
         let newTodo = buildTodo();
 
         events.raiseEvent("saveTodo", newTodo);
     }
     function buildTodo(){
-        const title = newTodoDiv.querySelector("#title-field").value;
-        const description = newTodoDiv.querySelector("#description-field").value;
+        const newTitle = title.value;
+        const newDescription = description.value;
         const notesArr = buildNotesArray();
         const checklistArr = buildChecklistArray();
         let date = "";
@@ -50,7 +77,7 @@ function createNewTodoForm() {
         priority = (priority) ? priority.value : "";
 
         
-        const newTodo = createTodo(title, description, date, priority);
+        const newTodo = createTodo(newTitle, newDescription, date, priority);
 
         notesArr.forEach( note => newTodo.addNote(note) );
         checklistArr.forEach ( item => newTodo.addToChecklist(item.itemName, item.checked));
