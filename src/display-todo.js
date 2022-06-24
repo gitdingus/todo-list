@@ -4,6 +4,7 @@ import './display-todo.css';
 import {createHtmlElement} from 'dom-utils'
 
 function displayTodoElement(todo){
+    let changed = false;
     const events = EventEmitter;
     const displayTodoDiv = createHtmlElement({
         tag: "div",
@@ -20,6 +21,8 @@ function displayTodoElement(todo){
     const priority = displayTodoDiv.querySelector(".priority span");
     const checklist = displayTodoDiv.querySelector(".checklist");
     const editButton = displayTodoDiv.querySelector(".edit");
+    const deleteButton = displayTodoDiv.querySelector(".delete");
+    const doneButton = displayTodoDiv.querySelector(".done");
 
     title.textContent = todo.getTitle();
     description.textContent = todo.getDescription();
@@ -28,8 +31,28 @@ function displayTodoElement(todo){
     todo.getNotes().forEach( (note, index) => notes.appendChild(_buildNotesListItem(note, index)));
     todo.getChecklist().forEach( (item, index) => checklist.appendChild(_buildChecklistItem(item, index)));
 
-    editButton.addEventListener("click", () => events.raiseEvent("editTodo", todo));
+    editButton.addEventListener("click", () => events.raiseEvent("openTodoForEditing", todo));
+    deleteButton.addEventListener("click", () => events.raiseEvent("deleteTodo", todo));
+    doneButton.addEventListener("click", checkForChanges);
 
+    function checkForChanges(){
+        if (changed){
+            let checklistItems = checklist.querySelectorAll(".checklist-item");
+            let checklistArr = [];
+
+            checklistArr = Array.from(checklistItems).map( item => {
+                return {
+                    itemName: item.firstChild.nextSibling.textContent,
+                    checked: item.firstChild.checked,
+                }
+            });
+            
+
+            todo.setChecklist(checklistArr);
+        }
+
+        events.raiseEvent("closeTodo");
+    }
     function buildDateString(){
         let dateString = "";
 
@@ -62,6 +85,7 @@ function displayTodoElement(todo){
 
         let checklistItem = createHtmlElement({
             tag: "li",
+            classes: [ "checklist-item" ],
             children: [
                 createHtmlElement({
                     tag: "input",
@@ -86,6 +110,7 @@ function displayTodoElement(todo){
             ],
         });
 
+        checklistItem.querySelector("input").addEventListener("click", () => changed = true);
         return checklistItem;
     }
 
