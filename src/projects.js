@@ -3,6 +3,11 @@ import { createProject } from './project';
 function ProjectsList(){
     let projects = [];
     
+    function getProjectsData(){
+        let projectsData = projects.map( project => project.buildProjectData() );
+
+        return projectsData;
+    }
     function addProject(project){
         if (typeof(project) === 'string'){
             project = createProject(project);
@@ -61,6 +66,7 @@ function ProjectsList(){
         addProject,
         getProject,
         getProjects,
+        getProjectsData,
         removeProject,
         addTodoToProject,
         getTodoFromProject,
