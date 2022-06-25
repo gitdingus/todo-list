@@ -9,6 +9,10 @@ function createTodo(title, description, dueDate, priority){
     todo.checklist = [];
     todo.notes = [];
 
+    function getTodoDataCopy(){
+        const todoCopy = JSON.parse(JSON.stringify(todo));
+        return todoCopy;
+    }
     function getTitle(){
         return todo.title;
     }
@@ -35,7 +39,7 @@ function createTodo(title, description, dueDate, priority){
     }
 
     function setDueDate(newDueDate){
-        if (newDueDate instanceof Date === true){
+        if (newDueDate instanceof Date === true && newDueDate.toString() !== "Invalid Date"){
             todo.dueDate = newDueDate;
         }
         else {
@@ -240,6 +244,7 @@ function createTodo(title, description, dueDate, priority){
         getNotes,
         getNote,
         getIndexOfNote,
+        getTodoDataCopy,
         setTitle,
         setDescription,
         setDueDate,
