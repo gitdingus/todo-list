@@ -4,6 +4,15 @@ function createProject (name){
     project.name = name;
     project.todos = [];
 
+    function buildProjectData(){
+        let projectData = {
+            name: project.name,
+            todos: [],
+        };
+        projectData.todos = project.todos.map( todo => todo.getTodoDataCopy() );         
+
+        return projectData;
+    }
     function addTodo(todo){
         project.todos.push(todo);
         return todo;
@@ -75,6 +84,7 @@ function createProject (name){
         removeTodo,
         setName,
         hasPastDue,
+        buildProjectData,
         toString
     }
 
