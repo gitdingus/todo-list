@@ -2,21 +2,36 @@
     display: flex;
     align-items: center;
 
-    padding: 15px;
+    padding: 5px 30px;
+    margin-bottom: 12px;
+
+    border-radius: 30px;
+    background-color: rgba(59, 130, 246, .5);
+    box-shadow: 2px 2px 4px rgba(59, 130, 246, .3);
 }
 
 #project-bar .project-name{
+    margin: 0;
+    padding: 0;
     flex: 1;
-}
 
-#project-bar .add-todo-button{
-    border: 0;
-    background-color: white;
-    height: 15px;
-    width: 15px;
+    text-transform: capitalize;
+
+    font-family: 'Roboto Slab';
+    font-weight: normal;
+    color: rgba(0, 0, 0, .8);
+    /* font-size: 16px; */
 }
 
 .todo-display-panel{
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 35px;
+    padding-right: 45px;
+}
+
+.todo-display-panel .collapsed-note-widget{
+    padding: 5px;
+}
+.todo-display-panel .collapsed-note-widget:nth-child(even){
+    background-color: rgba(59, 130, 246, .2);
+
 }
