@@ -24,6 +24,10 @@ module.exports = {
                 type: "asset/resource",
             },
             {
+                test: /\.png$/i,
+                type: "asset/resource",
+            },
+            {
                 test: /\.css$/i,
                 use: [ "style-loader", "css-loader" ],
             },
@@ -35,6 +39,10 @@ module.exports = {
                 test: /new-todo-form.html$/i,
                 type: "asset/source",
             },
+            {
+                test: /index.html$/i,
+                use: [ "html-loader" ],
+            }
 
         ],
     },
