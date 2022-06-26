@@ -1,4 +1,11 @@
 #nav-widget-div{
     display: flex;
+    align-items: flex-end;
     gap: 20px;
+
+}
+
+#nav-widget-div p{
+    cursor: pointer;
+    text-transform: lowercase;
 }
