@@ -7,6 +7,9 @@
     align-items: center;
 }
 
+.collapsed-note-widget p {
+    margin: 5px 15px;
+}
 .collapsed-note-widget .note-title{
     grid-area: title;
 }
