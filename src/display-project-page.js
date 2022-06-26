@@ -2,7 +2,7 @@ import { createHtmlElement } from 'dom-utils';
 import { createCollapsedNoteWidget } from './note-widget-collapsed';
 import { EventEmitter }from 'event-emitter'
 import './display-project-page.css';
-import plusImage from './icons/plus-thick.svg';
+import plusImage from './icons/plus-thick.png';
 
 function createProjectPage(project){
     const events = EventEmitter;
@@ -27,7 +27,7 @@ function createProjectPage(project){
                         },
                     }),
                     createHtmlElement({
-                        tag: "button",
+                        tag: "div",
                         classes: [ "add-todo-button" ],
                         children: [
                             createHtmlElement({
