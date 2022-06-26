@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+body{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto auto 1fr;
+    font-family: "Roboto";
+
+    margin: 0;
+
+    height: 100vh;
+}
+
+#header{
+    grid-area: 1 / 2 / 2 / 3;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 12px;
+
+    background-color: rgba(59, 130, 246, .5);
+    box-shadow: 0px 1px 2px rgba(59, 130, 246, .9);
+    
+
+    height: 15vh;
+    padding: 8px 30px;
+
+}
+
+#header h1{
+    flex: 1;
+    justify-self: flex-start;
+
+    font-family: 'Caveat';
+    font-size: 58px;
+
+    margin: 0;
+
+    box-shadow: 
+
+}
+
+#header p{
+    margin:0;
+}
+
+#sidebar{
+    grid-area: 1 / 1 / 4 / 2;
+
+    background-color: rgba(59, 130, 246, .3);
+
+
+}
+
+#sidebar{
+    padding: 8px 30px;
+
+
+    box-shadow: inset -2px -1px 4px rgba(59, 130, 246, .9);
+}
+
+#sidebar h1{
+    font-weight: normal;
+    font-size: 1.25rem;
+}
+
+#nav-widget-div{
+    grid-area: 2 / 2 / 3 / 3;
+
+    padding-left: 30px;
+
+
+    background-color: rgba(59, 130, 246, .3);
+    box-shadow: 0px 2px 5px rgba(59, 130, 246, .4);
+}
+
+#main-content{
+    grid-area: 3 / 2 / 4 / 3;
+    padding: 30px;
+
+
+    background-color: rgba(59, 130, 246, .05);
+
+}

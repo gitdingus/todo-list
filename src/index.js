@@ -6,6 +6,7 @@ import { createProjectPage } from './display-project-page';
 import { createNewTodoForm } from './new-todo-form';
 import { displayTodoElement } from './display-todo';
 import { createTodo } from './todo';
+import './main.css';
 
 const events = EventEmitter;
 const projects = ProjectsList();
