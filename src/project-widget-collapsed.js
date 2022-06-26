@@ -13,14 +13,14 @@ function createCollapsedProjectWidget(project){
         children: [
             createHtmlElement({
                 tag: "p",
-                classes: [ "project-name" ],
+                classes: [ "project-name", "clickable" ],
                 properties: {
                     textContent: _project.getName(),
                 },
             }),
             createHtmlElement({
                 tag: "button",
-                classes: [ "delete-project-button" ],
+                classes: [ "delete-project-button", "clickable" ],
                 children: [
                     createHtmlElement({
                         tag: "img",
