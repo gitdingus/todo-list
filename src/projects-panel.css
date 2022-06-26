@@ -1,0 +1,37 @@
+#project-panel .project-list {
+    padding: 0 40px;
+}
+#project-panel #add-project-widget {
+    padding:10px 12px;
+    background-color: var(--header-bg-color);
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+
+#project-panel #add-project-widget input{
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: 0;
+    outline: 0;
+    background-color: white;
+
+    font-size: 18px;
+}
+
+#project-panel .collapsed-project-widget{
+    /* margin: 0 40px; */
+    padding: 5px;
+}
+
+#project-panel .collapsed-project-widget:nth-child(even){
+    background-color: var(--nav-bg-color);
+}
+
+#project-panel .collapsed-project-widget p{
+    text-transform: capitalize;
+    margin: 5px 15px;
+
+    font-size: 20px;
+}
+

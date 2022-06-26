@@ -1,7 +1,7 @@
 import { createAddProjectWidget } from './addProjectWidget';
 import { createProjectList } from './display-project-list';
 import { createHtmlElement } from 'dom-utils';
-
+import './projects-panel.css';
 function createProjectPanel(projects){
     const projectsList = createProjectList(projects);
     const projectPanel = createHtmlElement({
