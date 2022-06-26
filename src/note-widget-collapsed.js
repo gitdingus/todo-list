@@ -15,7 +15,7 @@ function createCollapsedNoteWidget(note){
         children: [
             createHtmlElement({
                 tag: "p",
-                classes: [ "note-title" ],
+                classes: [ "note-title", "clickable" ],
                 properties: {
                     textContent: note.getTitle(),
                 },
