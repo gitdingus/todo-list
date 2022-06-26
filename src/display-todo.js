@@ -17,8 +17,8 @@ function displayTodoElement(todo){
     const title = displayTodoDiv.querySelector(".title");
     const description = displayTodoDiv.querySelector(".description");
     const notes = displayTodoDiv.querySelector(".notes");
-    const dueDate = displayTodoDiv.querySelector(".due-date span");
-    const priority = displayTodoDiv.querySelector(".priority span");
+    const dueDate = displayTodoDiv.querySelector(".due-date");
+    const priority = displayTodoDiv.querySelector(".priority");
     const checklist = displayTodoDiv.querySelector(".checklist");
     const editButton = displayTodoDiv.querySelector(".edit");
     const deleteButton = displayTodoDiv.querySelector(".delete");
@@ -65,7 +65,7 @@ function displayTodoElement(todo){
             dateString = `${monthStr}/${dayStr}/${yearStr}`;
         }
         else {
-            dateString = todo.getDueDate();
+            // dateString = todo.getDueDate();
         }
 
         return dateString;
