@@ -1,5 +1,7 @@
 .collapsed-project-widget{
     display: flex;
+
+    gap: 10px;
 }
 
 .collapsed-project-widget p{
