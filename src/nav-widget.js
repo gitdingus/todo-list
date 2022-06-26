@@ -1,6 +1,7 @@
 import { createHtmlElement } from 'dom-utils';
 import { createProjectPanel } from './projects-panel';
 import { createProjectPage } from './display-project-page';
+import chevronRight from './icons/chevron-right.svg';
 import './nav-widget.css';
 
 function createNavWidget(){
@@ -124,9 +125,9 @@ function createNavWidget(){
 
     function _getArrow(){
         const arrow = createHtmlElement({
-            tag: "p",
+            tag: "img",
             properties: {
-                textContent: ">",
+                src: chevronRight,
             },
         });
 
