@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     mode: "development",
@@ -11,6 +12,11 @@ module.exports = {
     optimization: {
         minimize: false,
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+        }),
+    ],
     module: {
         rules: [
             {
@@ -22,9 +28,14 @@ module.exports = {
                 use: [ "style-loader", "css-loader" ],
             },
             {
-                test: /\.html$/i,
+                test: /display-todo.html$/i,
                 type: "asset/source",
-            }
+            },
+            {
+                test: /new-todo-form.html$/i,
+                type: "asset/source",
+            },
+
         ],
     },
 }
