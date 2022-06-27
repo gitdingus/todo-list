@@ -178,7 +178,12 @@ function createTodo(title, description, dueDate, priority){
     }
 
     function addNote(note){
-        todo.notes.push(note);
+        let duplicate = todo.notes.some( existingNote => existingNote === note);
+
+        if (!duplicate){
+            todo.notes.push(note);
+        }
+
     }
 
     function getNotes(){

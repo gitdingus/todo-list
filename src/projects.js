@@ -9,13 +9,27 @@ function ProjectsList(){
         return projectsData;
     }
     function addProject(project){
+        let duplicate = false;
         if (typeof(project) === 'string'){
-            project = createProject(project);
+            duplicate = projects.some( existingProject => existingProject.getName() === project);
+            if (!duplicate){
+                project = createProject(project);
+            }
+
         }
 
-        projects.push(project);
+        else {
+            duplicate = projects.some( existingProject => existingProject.getName() === project.getName());
+            if (!duplicate){
+                projects.push(project);
+            }
+        }
 
-        return project;
+        if (!duplicate){
+            return project;
+        }
+
+        return undefined;
     }
 
     function getProject(project){
