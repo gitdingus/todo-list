@@ -159,7 +159,6 @@ function loadData(){
    const ds = window.localStorage;
    const projectsData = JSON.parse(ds.getItem("projectsData"));
 
-console.log(projectsData);
    if (projectsData !== null){
       for ( let i = 0; i < projectsData.length; i++){
          let newProject = projects.addProject(projectsData[i].name);
@@ -172,11 +171,17 @@ console.log(projectsData);
                               projectsData[i].todos[j].priority
             );
 
+
+
             newTodo.setNotes(projectsData[i].todos[j].notes);
             newTodo.setChecklist(projectsData[i].todos[j].checklist);
+
             newProject.addTodo(newTodo);
+
+
          }
 
+         projects.addProject(newProject);
 
       }
    }
@@ -188,10 +193,9 @@ console.log(projectsData);
 function saveData(){
    // ds stands for dataStorage
    const ds = window.localStorage;
-console.log("saving data");
+
    ds.setItem("projectsData", JSON.stringify(projects.getProjectsData()));
-console.log(ds.getItem("projectsData"));
-alert("check console");
+
 }
 
 function loadPage(){

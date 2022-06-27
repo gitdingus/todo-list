@@ -15,7 +15,6 @@ function createProject (name){
     }
     function addTodo(todo){
         let duplicate = project.todos.some( existingTodo => existingTodo.getTitle() === todo.getTitle());
-
         if (!duplicate){
             project.todos.push(todo);
             return todo;
