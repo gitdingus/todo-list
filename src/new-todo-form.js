@@ -131,20 +131,56 @@ function createNewTodoForm(todo) {
 
     function addNoteItem(){
         if (notesField.value !== ""){
-            notesList.appendChild(createNoteElement(notesField.value));
+            let noteItems = notesList.querySelectorAll("li");
+            let duplicate = false;
+
+            if (noteItems){
+
+                noteItems.forEach( noteItem => {
+                    if (noteItem.textContent === notesField.value){
+                        duplicate = true;
+                    }
+                });
+                
+            }
+
+
+            if (!duplicate){
+                notesList.appendChild(createNoteElement(notesField.value));
+
+                notesField.value = "";
+                notesField.focus();
+            }
         }
 
-        notesField.value = "";
-        notesField.focus();
+
     }
 
     function addChecklistItem(){
         if (checklistField.value !== ""){
-            checklist.appendChild(createChecklistElement(checklistField.value));
+            let checklistItems = checklist.querySelectorAll("li label");
+            let duplicate = false;
+
+            if (checklistItems){
+
+                checklistItems.forEach( item => {
+                    if (item.textContent === checklistField.value){
+                        duplicate = true;
+                    }
+    
+                });
+
+            }
+
+            if (!duplicate){
+                checklist.appendChild(createChecklistElement(checklistField.value));
+
+                checklistField.value = "";
+                checklistField.focus();
+            }
         }
 
-        checklistField.value = "";
-        checklistField.focus();
+
     }
 
     function keyPress(e){
