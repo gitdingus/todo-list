@@ -84,8 +84,8 @@ function createAddProjectWidget(){
         _addProjectButton.disabled = false;
         _addProjectButton.classList.remove("disabled");
 
-        _cancelProjectButton.disabled = false;
-        _cancelProjectButton.classList.remove("disabled");
+        // _cancelProjectButton.disabled = false;
+        // _cancelProjectButton.classList.remove("disabled");
 
         _addProjectText.classList.remove("inactive");
     }
