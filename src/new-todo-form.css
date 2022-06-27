@@ -1,13 +1,11 @@
-#new-todo-form{
+#new-todo-form form{
     display: grid;
     grid-template-columns: 2fr 1fr;
+    column-gap: 15px;
     width: 100%;
 
 }
 
-#new-todo-form fieldset{
-    padding: 15px;
-}
 
 #new-todo-form h1{
     margin: 0;
@@ -17,49 +15,101 @@
     font-size: 16px;
 }
 
-#title-description{
-    display: grid;
-    grid-template-columns: 125px 1fr;
-
-    gap: 8px;
-}
-
-#title-description textarea{
-    resize: vertical;
-}
 
 #new-todo-form .left-pane,
 #new-todo-form .right-pane{
     display: flex;
     flex-direction: column;
+
+    gap: 18px;
 }
 
-#new-todo-form .stretch{
-    flex: 1;
+#new-todo-form .left-pane>div,
+#new-todo-form .right-pane>div{
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 5px;
+
+    box-shadow: 1px 2px 4px 2px rgba(59, 130, 246, .5);
+
+
 }
 
-#new-todo-form .left-pane label{
-    justify-self: end;
+#new-todo-form h2{
+    background-color: var(--header-bg-color);
+
+    margin:0;
+    padding: 5px 8px;
+
+    font-family: "Roboto Slab";
+    font-size: 16px;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+
 }
 
-#notes-pane{
+#new-todo-form input,
+#new-todo-form textarea{
+    padding: 8px 12px;
+    margin: 2px;
+    font-size: 16px;
+
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+
+    box-shadow: inset 0px 0px 5px 1px var(--header-bg-color);
+
+}
+
+#new-todo-form textarea{
+    font-family: inherit;
+    height: 100px;
+}
+#new-todo-form #notes-pane{
 
     display: grid;
-    grid-template-columns: 125px 1fr auto;
-
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "header header"
+                            "input button"
+                            "list .";
  
-    gap: 8px;
+    /* column-gap: 8px; */
+}
+
+#new-todo-form #notes-pane h2{
+    grid-area: header;
+}
+
+#new-todo-form #notes-pane #notes-field{
+    grid-area: input;
+}
+
+#new-todo-form #notes-pane #notes-button{
+    grid-area: button;
+
+    padding: 10px;
 }
 
 #notes-list{
-    grid-area: 2 / 2 / 3 / 3;
-    padding-left: 10px;
+    grid-area: list;
+    padding-left: 25px;
+    margin: 10px 0;
 }
+
+
 
 #notes-list .note-item{
     display: flex;
     align-items: center;
-    margin: 8px;
+    margin: 10px 5px;
+    padding: 8px 15px;
+
+    border-radius: 5px;
+    box-shadow:  1px 1px 3px 2px var(--nav-bg-color);
 }
 
 #notes-list .note-item p{
@@ -82,27 +132,47 @@
 
 #date-pane{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    align-items: center; 
 }
 
-#checklist-pane{
+#date-pane h2{
+    align-self: stretch;
+}
+
+#date-pane #date-widget-container{
+    margin: 10px;
+}
+
+#new-todo-form #checklist-pane{
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-template-areas: "header header"
+                        "input button"
+                        "list .";
     /* gap: 8px; */
-    column-gap: 8px;
+
+
+    align-items:center; 
 }
 
-#checklist-pane h1{
-    grid-area: 1 / 1 / 2 / 3;
+#new-todo-form #checklist-pane h2{
+    grid-area: header;
 }
 
-#checklist-pane #checklist-field{
-    grid-area: 2 / 1 / 3 / 2;
+#new-todo-form #checklist-pane #checklist-field{
+    grid-area: input;
 }
 
-#checklist-pane #check-button{
-    grid-area: 2 / 2 / 3 / 3;
+#new-todo-form #checklist-pane #check-button{
+    grid-area: button;
+    padding: 10px;
+}
+
+#new-todo-form #checklist-pane #checklist{
+    grid-area: list;
+
+    margin:10px 0;
 }
 
 #checklist-pane .checklist-item{
@@ -113,15 +183,16 @@
 
     gap: 8px;
 
+    margin-left: 30px;
+
 }
 
 #checklist-pane .checklist-item label{
     flex: 1;
 }
 
-#checklist-pane .input img,
 #checklist-pane .checklist-item img{
-    margin: 0;
+    margin: 5px;
     padding: 0;
     height: 15px;
     width: 15px;
@@ -134,10 +205,14 @@
     list-style: none;
 }
 
-#new-todo-form .bottom-pane{
-    grid-area: 2 / 1 / 3 / 3;
+#new-todo-form #save-button{
 
-    display: flex;
-    justify-content: flex-end;
+    
+    font-family: "Roboto Slab";
+    font-size: 18px;
+
+    background-color:rgba(59, 130, 246, .5);
+
+    border-radius: 8px;
 }
 

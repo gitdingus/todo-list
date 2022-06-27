@@ -9,7 +9,12 @@ import './new-todo-form.css';
 function createNewTodoForm(todo) {
     let editing = false;
     const events = EventEmitter;
-    const newTodoDiv = document.createElement("div");
+    const newTodoDiv = createHtmlElement({
+        tag: "div",
+        properties: {
+            id: "new-todo-form",
+        },
+    });
     newTodoDiv.innerHTML = formHtml;
 
     const datePicker = DatePicker();
@@ -24,7 +29,7 @@ function createNewTodoForm(todo) {
     const saveButton = newTodoDiv.querySelector("#save-button");
     
 
-    newTodoDiv.querySelector("#date-pane").appendChild(datePicker.datePickerElement);    // const newTodoDiv = createHtmlElement({
+    newTodoDiv.querySelector("#date-widget-container").appendChild(datePicker.datePickerElement);    // const newTodoDiv = createHtmlElement({
     
     notesButton.addEventListener("click", addNoteItem);
     checklistButton.addEventListener("click", addChecklistItem);

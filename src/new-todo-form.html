@@ -1,39 +1,40 @@
 <form>
-    <div id="new-todo-form">
+
         <div class="left-pane">
-            <fieldset>
-                <div id="title-description">
-                    <label for="title-field">Title: </label>
+
+                <div id="title">
+                    <h2>Title </h2>
                     <input type="text" id="title-field" name="title-input">
-                    <label for="description-field">Description: </label>
+                </div>
+                <div id="description">
+                    <h2>Description </h2>
                     <textarea id="description-field" name="description-field"></textarea>
                 </div>
-            </fieldset>
-            <fieldset class="stretch">
+            
+            
                 <div id="notes-pane">
-                    <label for="notes-field">Notes: </label>
+                    <h2>Notes </h2>
                     <input type="text" id="notes-field" name="notes-field">
                     <img id="notes-button">
                     <ul id="notes-list"></ul>
                 </div>
-            </fieldset>
+            
         </div>
         <div class="right-pane">
-            <fieldset>
-                <h1>Date</h1>
-                <div id="date-pane"></div>
-            </fieldset>
-            <fieldset class="stretch">
+                <div id="date-pane">
+                    <h2>Date</h2>
+                    <div id="date-widget-container"></div>
+                </div>
+            
                 <div id="checklist-pane">
-                    <h1>Checklist</h1>
+                    <h2>Checklist</h2>
                     <input type="text" id="checklist-field" name="checklist-field">
                     <img id="check-button">
                     <ul id="checklist"></ul>
                 </div>
-            </fieldset>
-            <fieldset>
+
                 <div id="priority-pane">
-                    <h1>Priority</h1>
+                    <h2>Priority</h2>
                     <ul>
                         <li>
                             <input type="radio" id="high-priority" value="high" name="priority">
@@ -49,10 +50,11 @@
                         </li>
                     </ul>
                 </div>
-            </fieldset>
+                <div class="button-panel">
+                    <button id="save-button" type="button">Save</button>
+                </div>
+            
         </div>
-        <div class="bottom-pane">
-            <button id="save-button" type="button">Save</button>
-        </div>
-    </div>
+
+    
 </form>
